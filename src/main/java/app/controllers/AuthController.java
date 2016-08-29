@@ -16,11 +16,13 @@ import java.util.Map;
  */
 public class AuthController {
 
+    final static UsuarioDAO usuarioDAO = new UsuarioDAO();
+
     public static Route handleLoginPost = (request, response) -> {
         Map<String, Object> model = new HashMap<>();
 
         Result<Usuario> result
-                = UsuarioDAO.authUsuario(request.queryParams("email"),request.queryParams("password"));
+                = usuarioDAO.authUsuario(request.queryParams("email"),request.queryParams("password"));
 
         if (result.isSuccess()) {
             SessionUtil.initSession(request, result.getResult());

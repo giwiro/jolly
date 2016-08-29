@@ -10,7 +10,6 @@ public class DBManager {
 
     private static DBManager dbManager;
     private Driver driver;
-    private Session session;
 
     public DBManager () {
 
@@ -28,7 +27,7 @@ public class DBManager {
         return dbManager;
     }
 
-    public Session getSession () {
-        return session;
+    public Driver getDriver () {
+        return driver;
     }
 }

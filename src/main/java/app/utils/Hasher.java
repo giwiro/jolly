@@ -8,12 +8,18 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Hasher {
 
-    public static String MD5(String pt) throws NoSuchAlgorithmException {
+    public static String MD5(String pt) {
 
         String salt = "salitre";
         String salted = pt + salt;
 
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "";
+        }
         byte[] array = md.digest(salted.getBytes());
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < array.length; ++i) {

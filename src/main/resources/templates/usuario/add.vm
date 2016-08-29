@@ -1,0 +1,11 @@
+#if ($result)
+    <label for="">$result.getMessage()</label>
+#end
+<form action="$WebPath.getADD_USUARIO()" method="post">
+    <label for="nombre">Nombre: </label><input type="text" name="nombre" /> <br />
+    <label for="nombre">Apellido: </label><input type="text" name="apellido" /> <br />
+    <label for="nombre">DNI: </label><input type="text" name="dni" /> <br />
+    <label for="nombre">Email: </label><input type="text" name="email" /> <br />
+    <label for="nombre">Password: </label><input type="text" name="password" /> <br />
+    <input type="submit" value="GO" />
+</form>

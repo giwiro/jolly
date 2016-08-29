@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by Gi Wah Davalos on 28/08/2016.
  */
-public class Usuario {
+public class Usuario implements Model{
     private String nombre;
     private String apellido;
     private String dni;
@@ -63,7 +63,27 @@ public class Usuario {
         OJO: el parametro de entrada del método
         es en texto plano.
      */
-    public void setPassword(String password) throws NoSuchAlgorithmException {
+    public void setPassword(String password) {
         this.password = Hasher.MD5(password);
+    }
+
+    @Override
+    public boolean isValid() {
+        if (nombre == null || nombre.length() == 0) {
+            return false;
+        }
+        if (apellido == null || apellido.length() == 0) {
+            return false;
+        }
+        if (dni == null || dni.length() == 0) {
+            return false;
+        }
+        if (email == null || email.length() == 0) {
+            return false;
+        }
+        if (password == null || password.length() == 0) {
+            return false;
+        }
+        return true;
     }
 }

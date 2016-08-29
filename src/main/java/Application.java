@@ -1,4 +1,8 @@
+import app.Routes;
+import app.controllers.UsuarioController;
+
 import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
 
 /**
  * Created by Gi Wah Davalos on 28/08/2016.
@@ -7,7 +11,13 @@ public class Application {
 
     public static void main(String[] args) {
         port(getAssignedPort());
-        get("/hello", (req, res) -> "Hello Heroku World");
+        get("/", (req, res) -> "holi");
+
+        get(Routes.Web.ADD_USUARIO, UsuarioController.serveRegisterUsuario);
+        post(Routes.Web.ADD_USUARIO, UsuarioController.registerUsuario);
+        get(Routes.Web.GET_USUARIO, UsuarioController.findUsuario);
+        enableDebugScreen();
+
     }
 
 
