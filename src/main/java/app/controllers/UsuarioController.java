@@ -27,8 +27,6 @@ public class UsuarioController {
     public static Route findUsuario = (request, response) -> {
         String email = request.params(":email");
 
-        System.out.println("email:" + email);
-
         if (email == null || email.length() == 0) {
             return "Mal input del email";
         }
@@ -41,17 +39,20 @@ public class UsuarioController {
     public static Route registerUsuario = (request, response) -> {
         Map<String, Object> model = new HashMap<>();
         Result result;
+        String email = request.queryParams("email");
 
         Usuario usuario = new Usuario();
         usuario.setNombre(request.queryParams("nombre"));
         usuario.setApellido(request.queryParams("apellido"));
         usuario.setDni(request.queryParams("dni"));
-        usuario.setEmail(request.queryParams("email"));
+        usuario.setEmail(email);
         usuario.setPassword(request.queryParams("password"));
 
         if (!usuario.isValid()) {
             result = new Result(false, null, "Datos no válidos");
-        }else {
+        }else if (usuarioDAO.findUsuario_byEmail(email).isSuccess()) {
+            result = new Result(false, null, "Ya existe un usuario con ese email");
+        }else{
             result = usuarioDAO.addUsuario(usuario);
         }
 

@@ -11,13 +11,15 @@ public class Application {
 
     public static void main(String[] args) {
         port(getAssignedPort());
-        get("/", (req, res) -> "holi");
+        initRoutes();
+        enableDebugScreen();
+    }
 
+    static void initRoutes() {
+        get("/", (req, res) -> "holi");
         get(Routes.Web.ADD_USUARIO, UsuarioController.serveRegisterUsuario);
         post(Routes.Web.ADD_USUARIO, UsuarioController.registerUsuario);
         get(Routes.Web.GET_USUARIO, UsuarioController.findUsuario);
-        enableDebugScreen();
-
     }
 
 
@@ -26,7 +28,7 @@ public class Application {
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
-        return 8080; //return default port if heroku-port isn't set (i.e. on localhost)
+        return 8080;
     }
 
 }

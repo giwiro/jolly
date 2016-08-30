@@ -73,7 +73,7 @@ public class UsuarioDAO {
 
 
         if (nodesCreated == 1) {
-            return new Result(true, usuario);
+            return new Result(true, usuario, "Se creó el usuario satisfactoriamente");
         }else {
             return new Result(false, null, "No se pudo crear al usuario");
         }
