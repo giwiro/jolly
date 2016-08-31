@@ -64,7 +64,7 @@ public class Usuario implements Model{
         es en texto plano.
      */
     public void setPassword(String password) {
-        this.password = Hasher.MD5(password);
+        this.password = password;
     }
 
     @Override
@@ -85,5 +85,9 @@ public class Usuario implements Model{
             return false;
         }
         return true;
+    }
+
+    public void set_s_Password(String _s_Password) {
+        this.password = Hasher.MD5(_s_Password);
     }
 }

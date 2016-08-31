@@ -6,6 +6,7 @@ import app.model.Usuario;
 import app.utils.Result;
 import app.utils.SessionUtil;
 import app.utils.View;
+import spark.Filter;
 import spark.Route;
 
 import java.util.HashMap;
@@ -18,6 +19,22 @@ public class AuthController {
 
     final static UsuarioDAO usuarioDAO = new UsuarioDAO();
 
+    public static Filter canAccess = (request, response) -> {
+        if (!SessionUtil.isLogged(request)) {
+            response.redirect("/");
+        }
+    };
+
+    public static Filter alreadyLogged = (request, response) -> {
+        if (SessionUtil.isLogged(request)) {
+            response.redirect("/");
+        }
+    };
+
+    public static Route serveLoginPage = (request, response) -> {
+        return View.render(request, new HashMap<>(), Routes.Template.LOGIN);
+    };
+
     public static Route handleLoginPost = (request, response) -> {
         Map<String, Object> model = new HashMap<>();
 
@@ -25,7 +42,7 @@ public class AuthController {
                 = usuarioDAO.authUsuario(request.queryParams("email"),request.queryParams("password"));
 
         if (result.isSuccess()) {
-            SessionUtil.initSession(request, result.getResult());
+            SessionUtil.initSession(request, (Usuario)result.getResult());
             response.redirect(Routes.Web.INDEX);
         }
 

@@ -20,13 +20,11 @@ public class SessionUtil {
     public static void initSession(Request request, Usuario usuario) {
         request.session().attribute("currentUser", usuario);
         request.session().attribute("isLogged", true);
-        request.session().attribute("userType", "regular");
     }
 
     public static void removeSession(Request request) {
         request.session().removeAttribute("currentUser");
         request.session().attribute("isLogged", false);
         request.session().attribute("loggedOut", true);
-        request.session().removeAttribute("userType");
     }
 }

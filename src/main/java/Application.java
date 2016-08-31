@@ -1,4 +1,5 @@
 import app.Routes;
+import app.controllers.AuthController;
 import app.controllers.UsuarioController;
 
 import static spark.Spark.*;
@@ -17,8 +18,15 @@ public class Application {
 
     static void initRoutes() {
         get("/", (req, res) -> "holi");
+
+        before(Routes.Web.LOGIN, AuthController.alreadyLogged);
+        get(Routes.Web.LOGIN, AuthController.serveLoginPage);
+        post(Routes.Web.LOGIN, AuthController.handleLoginPost);
+
         get(Routes.Web.ADD_USUARIO, UsuarioController.serveRegisterUsuario);
         post(Routes.Web.ADD_USUARIO, UsuarioController.registerUsuario);
+
+        before(Routes.Web.GET_USUARIO, AuthController.canAccess);
         get(Routes.Web.GET_USUARIO, UsuarioController.findUsuario);
     }
 

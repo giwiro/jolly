@@ -46,7 +46,7 @@ public class UsuarioController {
         usuario.setApellido(request.queryParams("apellido"));
         usuario.setDni(request.queryParams("dni"));
         usuario.setEmail(email);
-        usuario.setPassword(request.queryParams("password"));
+        usuario.set_s_Password(request.queryParams("password"));
 
         if (!usuario.isValid()) {
             result = new Result(false, null, "Datos no válidos");

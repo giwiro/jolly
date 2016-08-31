@@ -1,5 +1,5 @@
 #if ($result)
-    <label for="">$result.getMessage()</label>
+    <label style="color: red;" for="">$result.getMessage()</label>
 #end
 <form action="$WebPath.getADD_USUARIO()" method="post">
     <label for="nombre">Nombre: </label><input type="text" name="nombre" /> <br />

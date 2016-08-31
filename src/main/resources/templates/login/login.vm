@@ -1,0 +1,8 @@
+#if ($result)
+    <label style="color: red;" for="">$result.getMessage()</label>
+#end
+<form action="$WebPath.getLOGIN()" method="post">
+    <label for="">Email: </label><input type="text" name="email" /><br />
+    <label for="">Password: </label><input type="password" name="password" /><br />
+    <input type="submit" value="Ingresar" />
+</form>
