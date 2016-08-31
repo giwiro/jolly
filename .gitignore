@@ -14,4 +14,3 @@ hs_err_pid*
 target/
 .idea/
 *.iml
-src/main/java/app/conf/Conf.java
