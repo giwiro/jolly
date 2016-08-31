@@ -1,6 +1,6 @@
 package app.db;
 
-import app.Conf;
+import app.conf.Conf;
 import org.neo4j.driver.v1.*;
 
 /**
