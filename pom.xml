@@ -6,6 +6,11 @@
     <groupId>com.jolly.app</groupId>
     <artifactId>jolly-app</artifactId>
     <version>1.0</version>
+
+    <properties>
+        <neo4j.version>3.0.4</neo4j.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.sparkjava</groupId>
@@ -32,6 +37,11 @@
             <groupId>org.neo4j.driver</groupId>
             <artifactId>neo4j-java-driver</artifactId>
             <version>1.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.test</groupId>
+            <artifactId>neo4j-harness</artifactId>
+            <version>${neo4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
