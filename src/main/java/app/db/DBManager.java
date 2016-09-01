@@ -18,6 +18,10 @@ public class DBManager {
         String password = Conf.getConf("NEO_PASSWORD");
 
         driver = GraphDatabase.driver( neo_url, AuthTokens.basic( username, password ) );
+
+        initConstraint(driver);
+
+
     }
 
     public static DBManager getInstance () {
@@ -25,6 +29,15 @@ public class DBManager {
             dbManager = new DBManager();
         }
         return dbManager;
+    }
+
+    private static void initConstraint(Driver driver) {
+        Session session = driver.session();
+        final String q = "CREATE CONSTRAINT ON (producto:Producto) ASSERT producto.id IS UNIQUE";
+
+
+
+        session.close();
     }
 
     public Driver getDriver () {
